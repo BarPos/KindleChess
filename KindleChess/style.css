@@ -525,7 +525,7 @@ button {
 }
 
 .settings-list::-webkit-scrollbar {
-    width: 40px;
+    width: 80px;
 }
 
 .settings-list::-webkit-scrollbar-track {
@@ -543,7 +543,7 @@ button {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 40px;
+    width: 80px;
     pointer-events: none;
     z-index: 2;
 }
@@ -551,10 +551,10 @@ button {
 .settings-scroll-btn {
     position: absolute;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     padding: 0;
-    font-size: 18px;
+    font-size: 36px;
     line-height: 1;
     border-width: 2px;
     box-sizing: border-box;
