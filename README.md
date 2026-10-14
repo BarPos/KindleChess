@@ -1,11 +1,11 @@
-# IllusionChess♟️
+# KindleChess♟️
 
-> [!NOTE]  
-> On An Elder Kindle/Experiencing Scaling Issues? Try The `-scaled` Build, By [Kurizu](https://github.com/crizmo)
+Two-player chess for Kindle, based on IllusionChess (previously KChess).
 
+Download and unzip the latest release, copy `KindleChess` and `KindleChess.sh` to the `documents` folder on your Kindle, then run `KindleChess.sh`.
 
-Chess (Chess/Board.JS) Installed Persistently Through ILLUSION! (Previously, KChess)
+Each player can open Settings from their side of the board and choose a piece set and a board.
 
-Download And Unzip The Latest Release, Copy `illusionChess` And `illusionChess.sh` To The `documents` Folder On Your Kindle, Then Run!
+After a game, a QR code is shown. Scanning it opens a full analysis of the game.
 
 ![Playing Chess](https://github.com/user-attachments/assets/fbe0e625-a3a4-4d78-a7f4-916d982cfa4e)

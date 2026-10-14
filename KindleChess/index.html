@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Chess</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+    <link rel="stylesheet" href="css/chessboard.min.css" type="text/css" />
+    <style id="screen-metrics"></style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title"></h1>
+        <p id="log"></p>
+        <div id="chessboard"></div>
+        <div id="captures-black" class="captures"></div>
+        <div id="captures-white" class="captures"></div>
+        <div id="status-black" class="status"></div>
+        <div id="status-white" class="status"></div>
+        <div id="last-move-black" class="last-move"></div>
+        <div id="last-move-white" class="last-move"></div>
+        <div id="clock-black" class="player-clock"></div>
+        <div id="clock-white" class="player-clock"></div>
+        <button id="reset-white" class="reset-button" type="button">Clear Board</button>
+        <button id="reset-black" class="reset-button" type="button">Clear Board</button>
+        <button id="exit-white" class="reset-button" type="button">Exit</button>
+        <button id="exit-black" class="reset-button" type="button">Exit</button>
+        <button id="settings-white" class="reset-button" type="button">Settings</button>
+        <button id="settings-black" class="reset-button" type="button">Settings</button>
+        <div id="settings" class="settings" hidden>
+            <div class="settings-box">
+                <div id="settings-home">
+                    <p class="settings-title">Settings</p>
+                    <button id="settings-about-row" class="settings-row" type="button">About &gt;</button>
+                    <button id="settings-pieces" class="settings-row" type="button">Pieces (Default) &gt;</button>
+                    <button id="settings-boards" class="settings-row" type="button">Board (Default) &gt;</button>
+                    <button id="settings-done" class="settings-done" type="button">Done</button>
+                </div>
+                <div id="settings-about" hidden>
+                    <button id="about-back" class="settings-back" type="button">&lt; Settings</button>
+                    <div id="about-body" class="about-body">
+                        <p class="settings-title">About</p>
+                        <p class="about-text">KindleChess is two-player chess for a Kindle, played from both sides of the board.</p>
+                        <div id="about-credits">
+                            <p class="about-credits-title">Credits</p>
+                            <ul class="about-credits-list">
+                                <li>Bartłomiej Postek (KindleChess)</li>
+                                <li>Penguins184 (Illusion; IllusionChess)</li>
+                                <li>HackerDude (IllusionChess v1/KChess)</li>
+                                <li>Chess.JS, ChessBoard.JS</li>
+                                <li>Zain Merchant, Minimax Algorithm Inplementation (https://codepen.io/zainmer/pen/jOOBjvv)</li>
+                                <li>GiorgioMegrelli, chess.com boards and pieces (https://github.com/GiorgioMegrelli/chess.com-boards-and-pieces)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="settings-chooser" hidden>
+                    <button id="settings-back" class="settings-back" type="button">&lt; Settings</button>
+                    <p id="settings-chooser-title" class="settings-title">Pieces</p>
+                    <div id="settings-list" class="settings-list"></div>
+                </div>
+            </div>
+        </div>
+        <div id="result-layer" hidden>
+            <div id="result-black" class="result-popup">
+                <p class="result-message"></p>
+                <button type="button" class="result-ok" data-player="b">OK</button>
+            </div>
+            <div id="result-qr" class="result-qr" hidden></div>
+            <div id="result-white" class="result-popup">
+                <p class="result-message"></p>
+                <button type="button" class="result-ok" data-player="w">OK</button>
+            </div>
+        </div>
+        <div id="confirm" class="confirm" hidden>
+            <div class="confirm-box" role="dialog" aria-modal="true">
+                <p id="confirm-message">Clear the board?</p>
+                <div class="confirm-actions">
+                    <button id="confirm-yes" type="button">Yes</button>
+                    <button id="confirm-no" type="button">No</button>
+                </div>
+            </div>
+        </div>
+        <div id="promote" class="confirm" hidden>
+            <div class="confirm-box">
+                <p>Choose a piece</p>
+                <div class="confirm-actions">
+                    <button type="button" class="promote-choice" data-piece="q"><img alt=""></button>
+                    <button type="button" class="promote-choice" data-piece="r"><img alt=""></button>
+                    <button type="button" class="promote-choice" data-piece="b"><img alt=""></button>
+                    <button type="button" class="promote-choice" data-piece="n"><img alt=""></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/polyfill.min.js"></script>
+    <script src="js/jquery.js"></script> <!-- Transpiled To ES5 With Babel -->
+    <script src="js/chessboard.min.js"></script> <!-- Transpiled To ES5 With Babel -->
+    <script src="js/chess.js"></script> <!-- Transpiled To ES5 With Babel -->
+    <script src="js/qrcode.js"></script>
+    <script src="script.js"></script> <!-- Transpiled To ES5 With Babel -->
+</body>
+</html>
