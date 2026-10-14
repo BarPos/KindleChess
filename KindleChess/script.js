@@ -987,26 +987,29 @@ function appendPiecePreview(parent, id) {
 function fillSkinList(kind) {
     var list = document.getElementById("settings-list");
     if (!list) return;
-    var items = sortSkins(kind === "pieces" ? PIECE_SETS : BOARD_SETS);
-    var selected = kind === "pieces" ? skinChoice.pieces : skinChoice.board;
+    var isBoards = kind === "boards";
+    var items = sortSkins(isBoards ? BOARD_SETS : PIECE_SETS);
+    var selected = isBoards ? skinChoice.board : skinChoice.pieces;
+    setClass(list, "is-boards", isBoards);
     while (list.firstChild) list.removeChild(list.firstChild);
     var i;
     for (i = 0; i < items.length; i++) {
         var id = items[i];
         var button = document.createElement("button");
         button.type = "button";
-        button.className = "skin-option";
+        button.className = "skin-option" + (isBoards ? " is-board" : "");
         if (id === selected) button.className += " is-selected";
         button.setAttribute("data-id", id);
         var preview = document.createElement("span");
         preview.className = "skin-preview";
-        if (kind === "pieces") appendPiecePreview(preview, id);
-        else {
+        if (isBoards) {
             var thumb = document.createElement("img");
             thumb.className = "board-thumb";
             thumb.src = "img/boards/" + id;
             thumb.alt = "";
             preview.appendChild(thumb);
+        } else {
+            appendPiecePreview(preview, id);
         }
         var name = document.createElement("span");
         name.className = "skin-name";
@@ -1071,14 +1074,29 @@ function placeSettings() {
     var height = screenHeight();
     dialog.style.width = width + "px";
     dialog.style.height = height + "px";
-    var boxW = Math.max(280, Math.min(760, width - 36));
-    box.style.width = boxW + "px";
     var list = document.getElementById("settings-list");
+    var listShell = document.getElementById("settings-list-shell");
     var chooser = document.getElementById("settings-chooser");
     var about = document.getElementById("settings-about");
     var showingChooser = chooser && !isHidden(chooser);
     var showingAbout = about && !isHidden(about);
-    if (!showingChooser && !showingAbout) {
+    setClass(box, "settings-fullscreen", showingChooser);
+    if (showingChooser) {
+        box.style.width = width + "px";
+        box.style.height = height + "px";
+        box.style.left = "0px";
+        box.style.top = "0px";
+        var title = document.getElementById("settings-chooser-title");
+        var back = document.getElementById("settings-back");
+        var used = (title ? title.offsetHeight : 40) + (back ? back.offsetHeight : 48) + 80;
+        var listH = Math.max(120, height - used);
+        if (listShell) listShell.style.height = listH + "px";
+        if (list) list.style.height = listH + "px";
+        return;
+    }
+    var boxW = Math.max(280, Math.min(760, width - 36));
+    box.style.width = boxW + "px";
+    if (!showingAbout) {
         box.style.height = "auto";
         placeBox(box, width / 2, height / 2);
         return;
@@ -1086,17 +1104,10 @@ function placeSettings() {
     var boxH = Math.max(320, Math.min(height - 36, Math.floor(height * 0.9)));
     box.style.height = boxH + "px";
     placeBox(box, width / 2, height / 2);
-    if (showingAbout) {
-        var aboutBody = document.getElementById("about-body");
-        var aboutBack = document.getElementById("about-back");
-        var aboutUsed = (aboutBack ? aboutBack.offsetHeight : 48) + 68;
-        if (aboutBody) aboutBody.style.height = Math.max(160, boxH - aboutUsed) + "px";
-        return;
-    }
-    var title = document.getElementById("settings-chooser-title");
-    var back = document.getElementById("settings-back");
-    var used = (title ? title.offsetHeight : 40) + (back ? back.offsetHeight : 48) + 80;
-    if (list) list.style.height = Math.max(120, boxH - used) + "px";
+    var aboutBody = document.getElementById("about-body");
+    var aboutBack = document.getElementById("about-back");
+    var aboutUsed = (aboutBack ? aboutBack.offsetHeight : 48) + 68;
+    if (aboutBody) aboutBody.style.height = Math.max(160, boxH - aboutUsed) + "px";
 }
 
 function placePromote() {
@@ -1435,6 +1446,19 @@ $("#settings-done").on("click", function (e) {
     closeSettings();
 });
 
+function skinListRowHeight(list) {
+    var option = list ? list.getElementsByClassName("skin-option")[0] : null;
+    return option && option.offsetHeight ? option.offsetHeight : 170;
+}
+
+function scrollSkinList(direction) {
+    var list = document.getElementById("settings-list");
+    if (!list) return;
+    var rows = settingsView === "boards" ? 1.1 : 2.2;
+    var step = Math.round(skinListRowHeight(list) * rows);
+    list.scrollTop = list.scrollTop + direction * step;
+}
+
 $("#settings-list").on("click", ".skin-option", function (e) {
     e.stopPropagation();
     var id = this.getAttribute("data-id");
@@ -1454,6 +1478,16 @@ $("#settings-list").on("click", ".skin-option", function (e) {
     }
     updateSettingsRows();
     markSkinSelection(id);
+});
+
+$("#settings-scroll-up").on("click", function (e) {
+    e.stopPropagation();
+    scrollSkinList(-1);
+});
+
+$("#settings-scroll-down").on("click", function (e) {
+    e.stopPropagation();
+    scrollSkinList(1);
 });
 
 $(".result-ok").on("click", function (e) {

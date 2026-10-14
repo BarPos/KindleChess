@@ -465,6 +465,11 @@ button {
     overflow: hidden;
 }
 
+.settings-box.settings-fullscreen {
+    border: none;
+    padding: 20px 24px 16px;
+}
+
 .settings.for-black .settings-box {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
@@ -492,10 +497,19 @@ button {
     border-radius: 0;
 }
 
+.skin-option {
+    padding: 22px 12px;
+    min-height: 126px;
+}
+
 .settings-done {
     display: block;
     margin: 28px auto 0;
     min-width: 140px;
+}
+
+.settings-list-shell {
+    position: relative;
 }
 
 .settings-list,
@@ -503,6 +517,61 @@ button {
     overflow-x: hidden;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+.settings-list {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.settings-list::-webkit-scrollbar {
+    width: 40px;
+}
+
+.settings-list::-webkit-scrollbar-track {
+    background: #fff;
+    border-left: 2px solid #000;
+}
+
+.settings-list::-webkit-scrollbar-thumb {
+    background: #000;
+    border: 4px solid #fff;
+}
+
+.settings-scroll-rail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.settings-scroll-btn {
+    position: absolute;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1;
+    border-width: 2px;
+    box-sizing: border-box;
+    pointer-events: auto;
+    background: #fff;
+}
+
+#settings-scroll-up {
+    top: 0;
+}
+
+#settings-scroll-down {
+    bottom: 0;
+}
+
+.settings-list.is-boards {
+    font-size: 0;
 }
 
 .about-text {
@@ -538,31 +607,78 @@ button {
 .skin-preview {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 14px;
+    margin-right: 18px;
     line-height: 0;
     background: #fff;
 }
 
 .skin-preview img {
-    width: 42px;
-    height: 42px;
-    margin-right: 2px;
+    width: 126px;
+    height: 126px;
+    margin-right: 4px;
     vertical-align: middle;
 }
 
 .skin-preview img.board-thumb {
-    width: 72px;
-    height: 72px;
+    width: 100%;
+    height: auto;
+    margin-right: 0;
 }
 
 .skin-name {
     display: inline-block;
     vertical-align: middle;
+    font-size: 28px;
 }
 
 .skin-check {
     float: right;
-    line-height: 42px;
+    font-size: 36px;
+    line-height: 126px;
+}
+
+.skin-option.is-board {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 18px 14px 22px;
+    text-align: center;
+    font-size: 28px;
+    border-bottom: 2px solid #000;
+    position: relative;
+}
+
+.skin-option.is-board .skin-preview {
+    display: block;
+    width: 100%;
+    margin: 0 0 12px;
+}
+
+.skin-option.is-board .skin-name {
+    display: block;
+    width: 100%;
+    font-size: 26px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.skin-option.is-board .skin-check {
+    float: none;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    line-height: 1;
+    font-size: 40px;
+    background: #fff;
+    padding: 2px 6px;
+}
+
+.skin-option.is-board.is-selected {
+    box-shadow: inset 0 0 0 5px #000;
 }
 
 .move-dot {

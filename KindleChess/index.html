@@ -58,7 +58,13 @@
                 <div id="settings-chooser" hidden>
                     <button id="settings-back" class="settings-back" type="button">&lt; Settings</button>
                     <p id="settings-chooser-title" class="settings-title">Pieces</p>
-                    <div id="settings-list" class="settings-list"></div>
+                    <div id="settings-list-shell" class="settings-list-shell">
+                        <div id="settings-list" class="settings-list"></div>
+                        <div class="settings-scroll-rail">
+                            <button id="settings-scroll-up" class="settings-scroll-btn" type="button" aria-label="Scroll up">&#9650;</button>
+                            <button id="settings-scroll-down" class="settings-scroll-btn" type="button" aria-label="Scroll down">&#9660;</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
