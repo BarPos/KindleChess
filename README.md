@@ -4,7 +4,7 @@ Two-player chess for Kindle, based on IllusionChess (previously KChess). There i
 
 ## Install
 
-Download and unzip the latest release, copy `KindleChess` and `KindleChess.sh` to the `documents` folder on your Kindle, then run `KindleChess.sh`.
+Download and unzip the latest release, copy `KindleChess` and `KindleChess.sh` to the `documents` folder on your Jailbroken Kindle, then run `KindleChess.sh`.
 
 ## Skins
 
